@@ -1,0 +1,324 @@
+<?php
+    require("config.php");
+
+    if(!empty($_POST))
+    {
+        // Ensure that the user fills out fields
+        if(empty($_POST['firstname']))
+        { die("Please enter firstname."); }
+        if(empty($_POST['lastname']))
+        { die("Please enter lastname."); }
+        if(empty($_POST['home_address']))
+        { die("Please enter a address."); }
+        if(empty($_POST['phone']))
+        { die("Please enter a phone."); }
+        if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+        { die("Invalid E-Mail Address"); }
+
+        // Check if the email is already taken
+        //$query = "SELECT 1 FROM users WHERE email = :email";
+        //$query_params = array(':email' => $_POST['email']);
+
+        //try {$stmt = $db->prepare($query);
+          //  $result = $stmt->execute($query_params);
+        //}
+        
+        //catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage());}
+        //$row = $stmt->fetch();
+        //if($row){ die("This email address is already registered"); }
+
+        // Add row to database
+        $query = "
+            INSERT INTO eoi_member (
+                slno,
+                firstname,
+                lastname,
+                organization,
+                position,
+                vendor_certification,
+                student_organization,
+                home_address,
+                email,
+                phone,
+                speaker
+
+            ) VALUES (
+                '',
+                :firstname,
+                :lastname,
+                :organization,
+                :position,
+                :vendor_certification,
+                :student_organization,
+                :home_address,
+                :email,
+                :phone,
+                :speaker
+            )
+        ";
+
+        $query_params = array(
+            ':firstname' => $_POST['firstname'],
+            ':lastname' => $_POST['lastname'],
+            ':organization' => $_POST['organization'],
+            ':position' => $_POST['position'],
+            ':vendor_certification' => $_POST['vendor_certification'],
+            ':student_organization' => $_POST['student_organization'],
+            ':home_address' => $_POST['home_address'],
+            ':email' => $_POST['email'],
+            ':phone' => $_POST['phone'],
+            ':speaker' => $_POST['speaker']
+        );
+
+        try {
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
+        }
+        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        header("Location: Form_Success.php");
+        die("Redirecting to Membership.php");
+    }
+?>
+    <!DOCTYPE html>
+    <!--[if IE 8]><html class="ie8" lang="en"><![endif]-->
+    <!--[if IE 9]><html class="ie9" lang="en"><![endif]-->
+    <!--[if !IE]><!-->
+    <html lang="en">
+    <!--<![endif]-->
+    <!-- start: HEAD -->
+
+    <head>
+        <title>bdNOG | Bangladesh Network Operators Group</title>
+        <!-- start: META -->
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="description" content="Developed By Bangladesh Network Operators Group">
+        <meta name="author" content="Fakrul Alam">
+        <meta name="author" content="fakrul@fakrul.com">
+        <meta name="keywords" content="Bangladesh Network Operators Group, bdNOG, Network, Telecommunication, Internet Service Provider">
+        <meta HTTP-EQUIV="CHARSET" CONTENT="ISO-8859-1">
+        <meta HTTP-EQUIV="CONTENT-LANGUAGE" CONTENT="English">
+        <meta HTTP-EQUIV="VW96.OBJECT TYPE" CONTENT="SearchEngine">
+        <meta NAME="RATING" CONTENT="General">
+        <meta NAME="ROBOTS" CONTENT="index,follow">
+        <meta name="google-site-verification" content="u_dop4ZU2FDPxe0yb3aR3Ob9_7TtuGi_7Zs_bw-zlao" />
+
+        <!-- end: META -->
+        <!-- start: MAIN CSS -->
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/fonts/style.css">
+        <link rel="stylesheet" href="assets/plugins/animate.css/animate.min.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/main-responsive.css">
+        <link rel="stylesheet" href="assets/css/theme_blue.css" type="text/css" id="skin_color">
+        <!-- end: MAIN CSS -->
+        <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+
+        <link rel="stylesheet" href="assets/plugins/flex-slider/flexslider.css">
+        <!-- bxSlider CSS file -->
+        <link href="css/jquery.bxslider.css" rel="stylesheet" />
+
+        <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+        <!-- start: HTML5SHIV FOR IE8 -->
+        <!--[if lt IE 9]>
+		<script src="assets/plugins/html5shiv.js"></script>
+		<![endif]-->
+        <!-- end: HTML5SHIV FOR IE8 -->
+    </head>
+    <!-- end: HEAD -->
+
+    <body>
+        <!-- start: HEADER MENU -->
+        <?php include('header.php'); ?>
+            <!-- end: HEADER MENU -->
+
+            <!-- start: MAIN CONTAINER -->
+            <div class="main-container">
+
+                <section class="page-top">
+                    <div class="container">
+                        <div class="col-md-4 col-sm-4">
+                            <h1>Membership</h1>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <ul class="pull-right breadcrumb">
+                                <li>
+                                    <a href="index.php">
+                                Home
+                            </a>
+                                </li>
+                                <li class="active">
+                                    Membership
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- start: MAIN TEXT -->
+                <section class="wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div>
+                                    <p style="text-align:justify">bdNOG membership is open to anyone with an interest to Internet operation, engineering technologies, conducting research, who wishes to do further education and would like to share knowledge with the Internet operational community. Membership is not mandatory to attend bdNOG conference.
+                                    </p>
+                                    <p style="text-align:justify">bdNOG members will be eligible to get following benefit:
+                                    </p>
+                                    <ul>
+                                        <li>Participate actively in bdNOG board and internal working committee.</li>
+                                        <li>Attend bdNOG internal working committee meetings share opinion.</li>
+                                        <li>Work voluntary to organize bdNOG events (I.e. conferences, workshops, trainings etc).</li>
+                                        <li>Will receive membership discount for bdNOG conference/training/workshop if there is any fees involve to participate.</li>
+                                    </ul>
+
+                                    <p style="text-align:justify"><b>Please also remember to subscribe to <a href="Mailing_List.php"> bdNOG mailing-list</a>. We discuss all operational matters on the mailing-list.</b>
+                                    </p>
+
+                                    <p style="text-align:justify">Here is the URL: <a href="http://www.bdnog.org/Mailing_List.php">http://www.bdnog.org/Mailing_List.php</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <!-- start: SPONSORS SLIDER -->
+                                <?php include('sponsors_slider.php'); ?>
+                                    <!-- end: SPONSORS SLIDER -->
+                            </div>
+                            <div class="col-lg-8 col-sm-8 address">
+                                <h4>bdNOG membership request</h4>
+                                <div class="contact-form">
+                                    <form id="loginform" class="form-horizontal" role="form" action="Membership.php" method="post">
+
+                                        <div class="form-group">
+                                            <label for="firstname">First Name *</label>
+                                            <input type="text" placeholder="First Name" id="firstname" name="firstname" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name *</label>
+                                            <input type="text" placeholder="Last Name" id="lastname" name="lastname" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="organization">Working Organization</label>
+                                            <input type="text" placeholder="Working Organization" id="organization" name="organization" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="position">Position</label>
+                                            <input type="text" placeholder="Position" id="position" name="position" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="vendor_certification">Vendor Certification (if any)</label>
+                                            <input type="text" placeholder="Vendor Certification (if any)" id="vendor_certification" name="vendor_certification" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="student_organization">Student Organization (if student)</label>
+                                            <input type="text" placeholder="Student Organization (if student)" id="student_organization" name="student_organization" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="home_address">Home address *</label>
+                                            <input type="text" placeholder="Home address *" id="home_address" name="home_address" class="form-control" data-validation="length" data-validation-length="min2">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email *</label>
+                                            <input type="text" placeholder="Email" id="email" name="email" class="form-control" data-validation="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone *</label>
+                                            <input type="text" placeholder="Phone" id="phone" name="phone" class="form-control" data-validation="length" data-validation-length="min5">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contribution">Interested to speak in next bdNOG Conference *</label>
+                                            <br>
+                                            <input type="radio" name="speaker" value="yes"> Yes
+                                            <br>
+                                            <input type="radio" name="speaker" value="no"> No
+                                        </div>
+                                        <div class="col-sm-12 controls">
+                                            <input type="submit" class="btn btn-info" value="submit" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- end: MAIN TEXT -->
+            </div>
+            <!-- end: MAIN CONTAINER -->
+
+            <!-- start: FOOTER -->
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>
+                                &copy; Copyright 2015 by Bangladesh Network Operators Group.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a id="scroll-top" href="#"><i class="fa fa-angle-up"></i></a>
+            <!-- end: FOOTER -->
+            <!-- start: MAIN JAVASCRIPTS -->
+            <!--[if lt IE 9]>
+		<script src="assets/plugins/respond.min.js"></script>
+		<script src="assets/plugins/excanvas.min.js"></script>
+		<script src="assets/plugins/html5shiv.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<![endif]-->
+            <!--[if gte IE 9]><!-->
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <!--<![endif]-->
+            <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/plugins/jquery.transit/jquery.transit.js"></script>
+            <script src="assets/plugins/hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"></script>
+            <script src="assets/plugins/jquery.appear/jquery.appear.js"></script>
+            <script src="assets/plugins/blockUI/jquery.blockUI.js"></script>
+            <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+            <script src="assets/js/main.js"></script>
+            <!-- end: MAIN JAVASCRIPTS -->
+            <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+            <script src="assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+            <script src="assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+            <script src="assets/plugins/flex-slider/jquery.flexslider.js"></script>
+            <script src="assets/plugins/stellar.js/jquery.stellar.min.js"></script>
+            <script src="assets/plugins/colorbox/jquery.colorbox-min.js"></script>
+
+            <script src="assets/js/index.js"></script>
+            <!-- bxSlider Javascript file -->
+            <script src="js/jquery.bxslider.min.js"></script>
+            <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+            <!-- start: validate form -->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+            <script type="text/javascript" src="http://www.technicalkeeda.com/js/javascripts/plugin/jquery.validate.js"></script>
+            <script>
+                $.validate();
+            </script>
+            <!-- end: validate form -->
+
+            <script>
+                jQuery(document).ready(function () {
+                    Main.init();
+                    Index.init();
+                    $.stellar();
+                });
+            </script>
+
+            <!--box slider-->
+            <script>
+                $('.bxslider').bxSlider({
+                    slideWidth: 200,
+                    auto: true,
+                    autoControls: true,
+                    controls: true
+                });
+            </script>
+
+
+    </body>
+
+    </html>

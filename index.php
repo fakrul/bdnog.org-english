@@ -52,22 +52,20 @@
     <!-- start: HEADER MENU -->
     <?php include('header.php'); ?>
         <!-- end: HEADER MENU -->
-
-        <!-- start: MAIN CONTAINER -->
-        <div class="main-container">
-            
-            <section class="wrapper wrapper-grey">
+    
                 <!-- start: LATEST SCROLLING NEWS -->
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h5 class="center"><marquee><a href="https://2016.apricot.net" target="_blank">APRICOT2016 & APNIC41 is going to held from 15–26 February 2016 in Auckland, New Zealand</a></marquee></h5>
+                        <div class="col-lg-12">
+                            <h5 class="center"><marquee><a href="http://www.sanog.org/sanog27/" target="_blank">25 Jan - 01 Feb, 2016, Kathmandu, Nepal: SANOG27 & APNIC Regional Meeting (ARMs) | </a> 
+                            <a href="https://2016.apricot.net" target="_blank"> 15 Feb - 26 Feb, 2016, Auckland, New Zealand: APRICOT2016 & APNIC41</APRICOT2016></a></marquee></h5>
                         </div>
                     </div>
                 </div>
                 <!-- end: LATEST SCROLLING NEWS -->
-            </section>
 
+        <!-- start: MAIN CONTAINER -->
+        <div class="main-container">
 
             <section id="featured">
                 <!-- start: SLIDER CONTAINER -->

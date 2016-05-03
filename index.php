@@ -57,8 +57,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h5 class="center"><marquee><a href="http://www.sanog.org/sanog27/" target="_blank">25 Jan - 01 Feb, 2016, Kathmandu, Nepal: SANOG27 & APNIC Regional Meeting (ARMs) | </a> 
-                            <a href="https://2016.apricot.net" target="_blank"> 15 Feb - 26 Feb, 2016, Auckland, New Zealand: APRICOT2016 & APNIC41</APRICOT2016></a></marquee></h5>
+                            <h5 class="center"><marquee>
+                            <a href="https://conference.apnic.net/42" target="_blank"> 29 September–6 October 2016, Dhaka, Bangladesh: APNIC42 & bdNOG6</APRICOT2016></a></marquee></h5>
                         </div>
                     </div>
                 </div>
@@ -74,6 +74,12 @@
                         <div class="col-lg-12">
                             <div id="main-slider" class="flexslider" data-plugin-options='{"directionNav":true, "animation":"slide", "slideshow": true, "animationLoop": true, "slideshowSpeed": 4000, "controlNav": true}'>
                                 <ul class="slides">
+                                    <li>
+                                        <img src="assets/images/sliders/5.jpg" alt="bdNOG5 Conference & ION Meeting" />
+                                        <div class="slide_text">
+                                            <div class="slide_title"><a href="bdnog5/index.php">bdNOG5 & ION Conference</a></div>
+                                        </div>
+                                    </li>
                                     <li>
                                         <img src="assets/images/sliders/4.jpg" alt="bdNOG4 Conference" />
                                         <div class="slide_text">
@@ -128,6 +134,8 @@
                             </div>
                             <div class="row">
                                 <li>
+                                <h5><a href="bdnog5/registration.php">bdNOG5 & ION Conference Registration is now closed</a></h5></li>
+                                <li>
                                     <h5><a href="https://www.flickr.com/photos/124839652@N07/sets/72157660520878817/with/22448681244/" target="_blank">bdNOG4 Conference photo gallery</a></h5></li>
                                 <li>
                                     <h5><a href="bdnog4/registration.php">bdNOG4 Conference & Workshop Registration is now close</a></h5></li>
@@ -143,8 +151,6 @@
                                     <h5><a href="news/apnic-bdnog-mou.php">bdNOG & APNIC Signed MOU</a></h5></li>
                                 <li>
                                     <h5><a href="news/bdnog-members-meeting.php">bdNOG members meeting</a></h5></li>
-                                <li>
-                                    <h5><a href="news/bdnog-executive-committee-meeting.php">bdNOG Executive Committee Meeting</a></h5></li>
                                 <br>
 
                                 <a class="btn btn-blue btn-xs" href="More_Activities.php">More Activities</a>
